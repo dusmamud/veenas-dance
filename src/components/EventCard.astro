@@ -1,0 +1,14 @@
+---
+interface Props { slug: string; title: string; dateDisplay: string; venue: string; img: string; excerpt: string }
+const p = Astro.props as Props;
+---
+<article class="course-card reveal overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-line">
+  <a href={`/events/${p.slug}/`} class="block overflow-hidden"><img src={p.img} alt="" width="800" height="500" loading="lazy" class="aspect-[16/10] w-full object-cover" /></a>
+  <div class="p-5">
+    <p class="text-xs font-bold uppercase tracking-widest text-flame">{p.dateDisplay}</p>
+    <h3 class="mt-1 font-display text-2xl font-bold"><a href={`/events/${p.slug}/`} class="hover:text-crimson">{p.title}</a></h3>
+    <p class="mt-1 text-sm font-semibold text-ink/60">{p.venue}</p>
+    <p class="mt-2 text-sm leading-relaxed text-ink/70">{p.excerpt}</p>
+    <a href={`/events/${p.slug}/`} class="mt-3 inline-flex min-h-[44px] items-center font-bold text-crimson hover:underline">Details & tickets <span aria-hidden="true" class="ml-1">→</span></a>
+  </div>
+</article>

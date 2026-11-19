@@ -1,0 +1,32 @@
+---
+import { contact, socials, site } from '../data/site';
+const cols = [
+  { title: 'Explore', links: [{href:'/school/',label:'The School'},{href:'/courses/',label:'Courses Offered'},{href:'/timetable/',label:'Timetable'},{href:'/pricing/',label:'Pricing & Fees'},{href:'/gallery/',label:'Photo Gallery'}] },
+  { title: 'Courses', links: [{href:'/courses/bharatanatyam/',label:'Bharatanatyam'},{href:'/courses/mohiniyattam/',label:'Mohiniyattam'},{href:'/courses/kuchipudi/',label:'Kuchipudi'},{href:'/courses/hip-hop/',label:'Hip Hop'}] },
+  { title: 'Support', links: [{href:'/events/',label:'Events'},{href:'/faq/',label:'FAQ'},{href:'/testimonials/',label:'Testimonials'},{href:'/blog/',label:'Blog'},{href:'/contact/',label:'Contact Us'},{href:'/privacy/',label:'Privacy Policy'},{href:'/terms/',label:'Terms'}] },
+];
+---
+<footer class="bg-ink px-4 pb-8 pt-12 text-cream sm:px-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-10 border-b border-white/15 pb-10 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div>
+        <p class="font-script text-4xl text-gold">Veena's School</p>
+        <p class="mt-1 font-display text-lg font-bold">of Indian Dances</p>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-cream/75">Classical and contemporary dance in Melbourne — taught with rigour, patience and joy since 2008 (mock history).</p>
+        <p class="mt-4 text-sm font-semibold"><a href={contact.phoneHref} class="hover:text-gold">{contact.phoneIntl}</a></p>
+        <p class="text-sm font-semibold"><a href={`mailto:${contact.email}`} class="break-all hover:text-gold">{contact.email}</a></p>
+        <p class="mt-1 text-xs text-cream/60">{contact.address}</p>
+        <a href="/book-trial/" class="mt-5 inline-block rounded-full bg-saffron px-5 py-3 text-sm font-bold text-ink transition hover:bg-gold">Book a Free Trial Class</a>
+      </div>
+      {cols.map((c) => (<div><h3 class="text-sm font-bold uppercase tracking-wider text-gold">{c.title}</h3><ul class="mt-3 space-y-2 text-sm">{c.links.map((l) => (<li><a href={l.href} class="text-cream/75 transition hover:text-cream hover:underline">{l.label}</a></li>))}</ul></div>))}
+    </div>
+    <div class="flex flex-col items-center justify-between gap-4 pt-6 sm:flex-row">
+      <p class="text-xs text-cream/60">© {site.year} {site.name}. All rights reserved. Mock demo content — confirm real details before launch.</p>
+      <div class="flex items-center gap-2">{socials.map((s) => (<span role="img" aria-label={s.label} class="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-[11px] font-bold">{s.label.slice(0,2).toUpperCase()}</span>))}</div>
+    </div>
+  </div>
+</footer>
+<div class="sticky bottom-0 z-40 grid grid-cols-2 bg-crimson text-cream md:hidden">
+  <a href={contact.phoneHref} class="py-3.5 text-center text-sm font-bold">Call Now</a>
+  <a href="/book-trial/" class="bg-flame py-3.5 text-center text-sm font-bold">Free Trial</a>
+</div>

@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-script: "Great Vibes", "Playfair Display", cursive;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-ink: #2b1410;
+  --color-ink-2: #3d1f18;
+  --color-crimson: #7a1e1e;
+  --color-crimson-deep: #5e1515;
+  --color-flame: #9a3412;
+  --color-saffron: #e8830c;
+  --color-gold: #c9a227;
+  --color-gold-deep: #7a5e14;
+  --color-cream: #fdf8f0;
+  --color-mist: #f7eedd;
+  --color-card: #ffffff;
+  --color-line: rgba(122, 30, 30, 0.16);
+}
+
+@font-face { font-family: "Playfair Display"; src: url("/fonts/playfair-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("/fonts/playfair-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Great Vibes"; src: url("/fonts/great-vibes-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
+body { background: #fdf8f0; color: #2b1410; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+::selection { background: #7a1e1e; color: #fdf8f0; }
+.font-display { font-family: var(--font-display); }
+.font-script { font-family: var(--font-script); }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 28s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } html { scroll-behavior: auto; } }
+
+.reveal { opacity: 1; transform: none; }
+.testi-track { transition: transform 0.5s ease; }
+:focus-visible { outline: 2px solid #9a3412; outline-offset: 2px; border-radius: 4px; }
+footer :focus-visible { outline-color: #e8b84b; }
+
+#scroll-progress { position: fixed; top: 0; left: 0; z-index: 80; height: 3px; width: 100%; background: linear-gradient(90deg,#7a1e1e,#e8830c); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+#site-header { transition: transform 0.35s ease; will-change: transform; }
+#site-header.header-hidden { transform: translateY(-115%); }
+#back-to-top { position: fixed; right: 1rem; bottom: 1rem; z-index: 70; display: grid; height: 3rem; width: 3rem; place-items: center; border-radius: 9999px; background: #7a1e1e; color: #fdf8f0; font-weight: 800; box-shadow: 0 8px 24px rgba(43,20,16,.3); opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+#back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+#toast { position: fixed; left: 50%; bottom: 1.5rem; z-index: 96; max-width: calc(100vw - 2rem); transform: translate(-50%,16px); border-radius: 9999px; background: #7a1e1e; color: #fdf8f0; padding: .75rem 1.25rem; font-size: .875rem; font-weight: 700; box-shadow: 0 12px 32px rgba(43,20,16,.35); opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; text-align: center; }
+#toast.show { opacity: 1; transform: translate(-50%,0); }
+
+.faq-panel { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .35s ease; }
+.faq-panel > div { overflow: hidden; min-height: 0; }
+.js .faq-panel { grid-template-rows: 0fr; }
+.js .faq-panel[data-open="true"] { grid-template-rows: 1fr; }
+.faq-icon { transition: transform .3s ease; }
+[data-faq-btn][aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+
+.course-card img, .gallery-card img { transition: transform .45s ease; }
+.course-card:hover img, .gallery-card:hover img { transform: scale(1.05); }
+.field-error { margin-top: .375rem; font-size: .875rem; font-weight: 600; min-height: 1.25rem; }
+input[aria-invalid="true"], textarea[aria-invalid="true"], select[aria-invalid="true"] { border-color: #b91c1c !important; }
+[data-magnetic] { will-change: transform; }
+.brush { background: linear-gradient(100deg,#7a1e1e,#9a3412 55%,#e8830c); }
+
+@media (prefers-reduced-motion: reduce) {
+  #site-header, #back-to-top, #toast, .faq-panel, .faq-icon, .course-card img { transition: none !important; }
+  .marquee-track { animation: none !important; }
+}

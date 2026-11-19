@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import EventCard from '../components/EventCard.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, contact, stats, courses, events, testimonials, faqs, timetable, gallery, levels } from '../data/site';
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.slice(0, 5).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const todayClasses = timetable[0];
+---
+<Layout jsonLd={faqLd}>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-ink text-cream">
+    <img src="/images/hero-dancer.webp" alt="Bharatanatyam dancer in red and cream silk costume in araimandi pose" width="1200" height="900" fetchpriority="high" loading="eager" class="absolute inset-0 h-full w-full object-cover opacity-45" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <p data-hero class="font-script text-5xl text-gold sm:text-6xl">Welcome to</p>
+      <h1 data-hero class="mt-2 max-w-2xl font-display text-4xl font-bold leading-[1.05] sm:text-6xl">Veena's School of Indian Dances</h1>
+      <p data-hero class="mt-4 max-w-xl text-base leading-relaxed text-cream/85 sm:text-lg">Bharatanatyam, Mohiniyattam, Kuchipudi & Hip Hop in Melbourne — for ages 5 to adult. Small classes, a caring Guru, and a clear path from your first adavu to the Arangetram stage.</p>
+      <div data-hero class="mt-8 flex flex-wrap gap-3">
+        <a href="/book-trial/" data-magnetic class="rounded-full bg-saffron px-7 py-4 font-bold text-ink shadow-lg transition hover:bg-gold">Book a Free Trial Class</a>
+        <a href="/courses/" class="rounded-full border border-cream/50 px-7 py-4 font-bold text-cream transition hover:bg-cream hover:text-ink">Explore Courses</a>
+      </div>
+      <p data-hero class="mt-4 text-sm text-cream/70">Call <a href={contact.phoneHref} class="font-semibold text-gold hover:underline">{contact.phoneDisplay}</a> · Brunswick East, Melbourne</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="border-b border-line bg-mist px-4 py-8 sm:px-6" aria-label="School highlights">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-6 lg:grid-cols-4">
+      {stats.map((s) => (<div class="reveal text-center"><p class="font-display text-4xl font-bold text-crimson"><span data-count={s.value}>{s.value.toLocaleString('en-AU')}</span>{s.suffix}</p><p class="mt-1 text-sm font-bold">{s.label}</p><p class="text-xs text-ink/60">{s.sub}</p></div>))}
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="overflow-hidden bg-crimson py-3 text-cream" aria-hidden="true">
+    <div class="marquee-track flex w-max gap-8 whitespace-nowrap font-display text-lg font-bold">
+      {[0,1].map(() => (<span class="flex gap-8">{courses.map((c) => (<span>{c.title} <span class="text-gold">✦</span></span>))}<span>Arangetram <span class="text-gold">✦</span></span><span>Free Trial Class <span class="text-gold">✦</span></span></span>))}
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <section class="px-4 py-14 sm:px-6 sm:py-20">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src="/images/welcome-dancer.webp" alt="Dancer in green and red costume seated in a classical pose" width="900" height="900" loading="lazy" class="aspect-square w-full object-cover" /></figure>
+      <div class="reveal">
+        <p class="font-script text-5xl text-crimson">Welcome</p>
+        <h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">A school where tradition is taught with joy</h2>
+        <p class="mt-4 leading-relaxed text-ink/70">For over 18 years (mock history), families across Melbourne have trusted Veena's School for one reason: we teach the full classical tradition — posture, rhythm, expression, theory — in classes small enough for every child to be truly seen.</p>
+        <p class="mt-3 leading-relaxed text-ink/70">Whether your child dreams of an Arangetram, dances for culture and confidence, or just loves to move, there is a class, a level and a stage waiting for them here.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/school/" class="rounded-full bg-crimson px-6 py-3.5 font-bold text-cream transition hover:bg-crimson-deep">About the School</a>
+          <a href="/book-trial/" class="rounded-full border-2 border-crimson px-6 py-3.5 font-bold text-crimson transition hover:bg-mist">Book a Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="bg-mist px-4 py-14 sm:px-6 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center reveal">
+        <p class="font-script text-5xl text-crimson">Courses Offered</p>
+        <h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">Four forms, one family</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-ink/70">Short-term and long-term courses, sorted by age and level — every classical student follows the same clear path: {levels.join(' → ')}.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {courses.map((c) => (<CourseCard slug={c.slug} title={c.title} img={c.img} short={c.short} ages={c.ages} feeHint={c.feeHint} />))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING PATH -->
+  <section class="px-4 py-14 sm:px-6 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center reveal"><p class="font-script text-5xl text-crimson">The Path</p><h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">From first step to debut stage</h2></div>
+      <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { n: '01', t: 'Foundation', d: 'Posture, adavus, mudras and rhythm — the joyful basics, grouped by age.' },
+          { n: '02', t: 'Intermediate', d: 'First repertoire items, theory and stage experience at Taal each year.' },
+          { n: '03', t: 'Advanced', d: 'Varnam and padams — stamina, depth and mature abhinaya.' },
+          { n: '04', t: 'Arangetram Preparation', d: 'By invitation: a full solo debut with live musicians, guided end to end.' },
+        ].map((s) => (<li class="reveal rounded-3xl bg-white p-6 ring-1 ring-line"><p class="font-display text-3xl font-bold text-saffron">{s.n}</p><h3 class="mt-2 font-display text-xl font-bold">{s.t}</h3><p class="mt-2 text-sm leading-relaxed text-ink/70">{s.d}</p></li>))}
+      </ol>
+      <p class="reveal mt-8 text-center"><a href="/timetable/" class="font-bold text-crimson hover:underline">See the full timetable →</a> · <a href="/pricing/" class="font-bold text-crimson hover:underline">Fees & policies →</a></p>
+    </div>
+  </section>
+
+  <!-- TIMETABLE PREVIEW -->
+  <section class="bg-ink px-4 py-14 text-cream sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-wrap items-end justify-between gap-4 reveal">
+        <div><p class="font-script text-4xl text-gold">This week</p><h2 class="mt-1 font-display text-3xl font-bold">Monday at the studio</h2></div>
+        <a href="/timetable/" class="rounded-full bg-cream px-5 py-3 text-sm font-bold text-ink hover:bg-gold">Full Timetable</a>
+      </div>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {todayClasses.classes.map((c) => (<article class="reveal rounded-3xl bg-white/10 p-5 ring-1 ring-white/15"><p class="text-sm font-bold text-gold">{c.time} · {c.studio}</p><h3 class="mt-1 font-display text-xl font-bold">{c.name}</h3><p class="mt-2 text-sm text-cream/75">{c.age} · {c.level} · {c.duration} · Teacher: {c.teacher}</p></article>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="px-4 py-14 sm:px-6 sm:py-20">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="font-script text-5xl text-crimson reveal">Kind Words</p>
+      <h2 class="mt-1 font-display text-3xl font-bold reveal">What families say</h2>
+      <div class="relative mt-8 overflow-hidden reveal" id="testi-viewport">
+        <div id="testi-track" class="testi-track flex">
+          {testimonials.map((t) => (<figure data-slide class="w-full shrink-0 px-2"><blockquote class="text-lg leading-relaxed text-ink/80 sm:text-xl">“{t.quote}”</blockquote><figcaption class="mt-4"><span class="font-bold text-crimson">{t.name}</span><span class="block text-sm text-ink/60">{t.role}</span></figcaption></figure>))}
+        </div>
+      </div>
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <button id="testi-prev" type="button" aria-label="Previous testimonial" class="grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:bg-mist">←</button>
+        <div class="flex gap-2">{testimonials.map((_, i) => (<button type="button" data-dot aria-label={`Testimonial ${i + 1}`} class:list={['h-3 w-3 rounded-full', i === 0 ? 'bg-crimson' : 'bg-crimson/25']}></button>))}</div>
+        <button id="testi-next" type="button" aria-label="Next testimonial" class="grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:bg-mist">→</button>
+      </div>
+      <a href="/testimonials/" class="mt-6 inline-block font-bold text-crimson hover:underline">Read all testimonials →</a>
+    </div>
+  </section>
+
+  <!-- FEATURED EVENT -->
+  <section class="bg-mist px-4 py-14 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center reveal"><p class="font-script text-5xl text-crimson">Events</p><h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">On stage soon</h2></div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">{events.map((e) => (<EventCard slug={e.slug} title={e.title} dateDisplay={e.dateDisplay} venue={e.venue} img={e.img} excerpt={e.excerpt} />))}</div>
+    </div>
+  </section>
+
+  <!-- GALLERY PREVIEW -->
+  <section class="px-4 py-14 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-wrap items-end justify-between gap-4 reveal"><div><p class="font-script text-5xl text-crimson">Gallery</p><h2 class="mt-1 font-display text-3xl font-bold">Moments we treasure</h2></div><a href="/gallery/" class="font-bold text-crimson hover:underline">View the photo gallery →</a></div>
+      <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {gallery.slice(0, 4).map((g) => (<figure class="gallery-card reveal overflow-hidden rounded-3xl"><img src={g.img} alt={g.alt} width="600" height="600" loading="lazy" class="aspect-square w-full object-cover" /><figcaption class="sr-only">{g.caption}</figcaption></figure>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ PREVIEW -->
+  <section class="bg-mist px-4 py-14 sm:px-6">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center reveal"><p class="font-script text-5xl text-crimson">Questions?</p><h2 class="mt-1 font-display text-3xl font-bold">Parents ask us…</h2></div>
+      <div class="mt-8 reveal"><FaqList items={faqs.slice(0, 5)} /></div>
+      <p class="mt-6 text-center"><a href="/faq/" class="font-bold text-crimson hover:underline">See all FAQs →</a></p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

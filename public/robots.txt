@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://veenasschoolofindiandances.pages.dev/sitemap-index.xml

@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { events } from '../../data/site';
+export function getStaticPaths() { return events.map((e) => ({ params: { slug: e.slug }, props: { event: e } })); }
+const { event } = Astro.props;
+const ld = { '@context': 'https://schema.org', '@type': 'Event', name: event.title, startDate: event.date, location: { '@type': 'Place', name: event.venue, address: 'Melbourne, VIC, Australia' }, organizer: { '@type': 'DanceSchool', name: "Veena's School of Indian Dances" }, offers: event.tickets.map((t) => ({ '@type': 'Offer', name: t.tier, price: t.price, priceCurrency: 'AUD', availability: 'https://schema.org/InStock' })) };
+---
+<Layout title={`${event.title} — Veena's School of Indian Dances`} description={event.excerpt} jsonLd={ld} ogImage={`https://veenasschoolofindiandances.pages.dev${event.img}`}>
+  <PageHero eyebrow={event.dateDisplay} title={event.title} lead={event.venue} />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[1.5fr_1fr]">
+      <div>
+        <figure class="reveal overflow-hidden rounded-[2rem]"><img src={event.img} alt="" width="1100" height="700" class="aspect-[16/10] w-full object-cover" /></figure>
+        {event.body.map((p) => (<p class="reveal mt-5 leading-relaxed text-ink/75">{p}</p>))}
+      </div>
+      <aside class="reveal rounded-3xl bg-white p-6 ring-1 ring-line lg:sticky lg:top-28">
+        <h2 class="font-display text-xl font-bold">Tickets</h2>
+        <ul class="mt-4 divide-y divide-line">
+          {event.tickets.map((t) => (<li class="flex items-center justify-between py-3"><span class="font-semibold">{t.tier}</span><span class="font-display text-xl font-bold text-crimson">{t.price === 0 ? 'Free' : `$${t.price}`}</span></li>))}
+        </ul>
+        <p class="mt-3 text-sm text-ink/60">Mock ticket tiers for the demo — real booking opens closer to the event.</p>
+        <a href="/book-trial/" class="mt-5 block rounded-full bg-crimson px-6 py-3.5 text-center font-bold text-cream hover:bg-crimson-deep">Book a Free Trial Class</a>
+        <a href="/events/" class="mt-3 block text-center font-bold text-crimson hover:underline">All events →</a>
+      </aside>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

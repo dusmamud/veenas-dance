@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { courses, levels } from '../../data/site';
+const ld = courses.map((c) => ({ '@context': 'https://schema.org', '@type': 'Course', name: c.title, description: c.short, provider: { '@type': 'DanceSchool', name: "Veena's School of Indian Dances" } }));
+---
+<Layout title="Courses Offered — Bharatanatyam, Mohiniyattam, Kuchipudi & Hip Hop | Veena's School" description="Classical and Hip Hop courses in Melbourne, sorted by age and level — Foundation to Arangetram Preparation. First trial class free." jsonLd={ld}>
+  <PageHero script="Courses Offered" title="Find the form that fits" lead={`Short-term and long-term courses for ages 5 to adult. Every classical course follows the same path: ${levels.join(' → ')}.`} />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {courses.map((c) => (<CourseCard slug={c.slug} title={c.title} img={c.img} short={c.short} ages={c.ages} feeHint={c.feeHint} />))}
+    </div>
+    <div class="mx-auto mt-12 max-w-3xl rounded-3xl bg-mist p-6 text-center reveal">
+      <h2 class="font-display text-2xl font-bold">Not sure which form?</h2>
+      <p class="mt-2 text-ink/70">Book a free trial in any form — or come to Open Day and try all four in one morning. Guru Veena will happily advise after watching your child move.</p>
+      <a href="/book-trial/" class="mt-4 inline-block rounded-full bg-crimson px-6 py-3.5 font-bold text-cream hover:bg-crimson-deep">Book a Free Trial Class</a>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

@@ -1,0 +1,12 @@
+---
+interface Props { items: { q: string; a: string }[] }
+const { items } = Astro.props;
+---
+<div class="divide-y divide-line rounded-3xl bg-white ring-1 ring-line">
+  {items.map((f, i) => (
+    <div>
+      <h3><button type="button" data-faq-btn aria-expanded={i === 0 ? 'true' : 'false'} class="flex min-h-[52px] w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold hover:text-crimson">{f.q}<span class="faq-icon shrink-0 text-2xl leading-none text-crimson" aria-hidden="true">+</span></button></h3>
+      <div class="faq-panel" data-open={i === 0 ? 'true' : 'false'}><div><p class="px-5 pb-5 text-sm leading-relaxed text-ink/70">{f.a}</p></div></div>
+    </div>
+  ))}
+</div>

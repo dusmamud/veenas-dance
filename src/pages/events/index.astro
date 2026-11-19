@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import EventCard from '../../components/EventCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { events } from '../../data/site';
+---
+<Layout title="Events — Taal & School Performances | Veena's School of Indian Dances" description="Annual recital Taal — The Rhythm of Dance, workshops and open days in Melbourne, with dates, venues and ticket tiers.">
+  <PageHero script="Events" title="Performances, workshops & open days" lead="Every student performs. These are the dates families plan around — book early, Taal sells out." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">{events.map((e) => (<EventCard slug={e.slug} title={e.title} dateDisplay={e.dateDisplay} venue={e.venue} img={e.img} excerpt={e.excerpt} />))}</div>
+  </section>
+  <CtaBand />
+</Layout>

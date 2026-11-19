@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { timetable } from '../data/site';
+---
+<Layout title="Class Timetable — Veena's School of Indian Dances, Melbourne" description="Weekly class timetable in text: day, time, class, age range, level, duration, teacher and studio for every batch.">
+  <PageHero script="Timetable" title="Weekly class timetable" lead="Every class, in plain text — grouped by day. Arrive 10 minutes early; classes start on time." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl space-y-10">
+      {timetable.map((d) => (
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold text-crimson">{d.day}</h2>
+          <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {d.classes.map((c) => (<article class="rounded-3xl bg-white p-5 ring-1 ring-line"><p class="text-sm font-bold text-flame">{c.time}</p><h3 class="mt-1 font-display text-lg font-bold">{c.name}</h3><dl class="mt-2 space-y-1 text-sm text-ink/70"><div>Age: {c.age}</div><div>Level: {c.level}</div><div>Duration: {c.duration}</div><div>Teacher: {c.teacher} · {c.studio}</div></dl><a href="/book-trial/" class="mt-3 inline-flex min-h-[44px] items-center font-bold text-crimson hover:underline">Book a free trial in this class →</a></article>))}
+          </div>
+        </div>
+      ))}
+      <p class="text-sm text-ink/60">Term dates follow Victorian school terms (10 weeks). No classes on public holidays — affected batches receive a make-up class.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

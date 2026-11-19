@@ -1,0 +1,61 @@
+---
+import { contact } from '../data/site';
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/school/', label: 'The School' },
+  { href: '/courses/', label: 'Courses Offered' },
+  { href: '/gallery/', label: 'Photo Gallery' },
+  { href: '/events/', label: 'Events' },
+  { href: '/contact/', label: 'Contact Us' },
+];
+const more = [
+  { href: '/timetable/', label: 'Timetable' }, { href: '/pricing/', label: 'Pricing & Fees' },
+  { href: '/faq/', label: 'FAQ' }, { href: '/testimonials/', label: 'Testimonials' }, { href: '/blog/', label: 'Blog' },
+];
+const current = Astro.url.pathname;
+---
+<div class="bg-crimson-deep text-cream text-xs sm:text-sm">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2 sm:px-6">
+    <p class="truncate">Brunswick East, Melbourne · {contact.hours}</p>
+    <a href={contact.phoneHref} class="shrink-0 font-semibold hover:underline">Call: {contact.phoneDisplay}</a>
+  </div>
+</div>
+<header id="site-header" class="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b border-line">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6" aria-label="Main navigation">
+    <a href="/" class="flex min-w-0 items-center gap-2.5" aria-label="Veena's School of Indian Dances — home">
+      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" class="shrink-0"><rect width="32" height="32" rx="8" fill="#7A1E1E"/><circle cx="16" cy="10" r="3" fill="#E8B84B"/><path d="M16 13c-4 3-6 6-6 10h4c0-3 1-5 2-6 1 1 2 3 2 6h4c0-4-2-7-6-10z" fill="#FDF8F0"/></svg>
+      <span class="min-w-0 leading-tight"><span class="block truncate font-display text-base font-bold text-crimson sm:text-lg">Veena's School</span><span class="block text-[11px] font-semibold uppercase tracking-widest text-flame">of Indian Dances</span></span>
+    </a>
+    <ul class="hidden items-center gap-5 text-sm font-medium lg:flex">
+      {links.map((l) => (<li><a href={l.href} class:list={['transition hover:text-crimson', { 'text-crimson font-bold': current === l.href }]}>{l.label}</a></li>))}
+      <li class="group relative">
+        <button type="button" aria-haspopup="true" aria-expanded="false" class="flex min-h-[44px] items-center gap-1 hover:text-crimson">More <span aria-hidden="true">▾</span></button>
+        <ul class="invisible absolute right-0 top-full w-52 rounded-2xl bg-white p-2 opacity-0 shadow-xl ring-1 ring-line transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+          {more.map((l) => (<li><a href={l.href} class="block rounded-xl px-4 py-2.5 hover:bg-mist hover:text-crimson">{l.label}</a></li>))}
+        </ul>
+      </li>
+    </ul>
+    <a href="/book-trial/" data-magnetic class="hidden shrink-0 rounded-full bg-crimson px-5 py-3 text-sm font-bold text-cream transition hover:bg-crimson-deep md:block">Book a Free Trial</a>
+    <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="grid h-11 w-11 shrink-0 place-items-center rounded-full hover:bg-mist lg:hidden">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </nav>
+</header>
+<div id="mobile-menu" class="fixed inset-0 z-[90] hidden flex-col overflow-y-auto bg-cream px-6 pb-10 pt-5" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="flex items-center justify-between">
+    <span class="font-display text-lg font-bold text-crimson">Veena's School</span>
+    <button id="menu-close" type="button" aria-label="Close menu" class="grid h-11 w-11 place-items-center rounded-full hover:bg-mist"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <ul class="mt-10 space-y-1">
+    {[...links, ...more].map((l) => (<li><a href={l.href} class="block rounded-2xl px-3 py-3 font-display text-2xl font-bold hover:bg-mist hover:text-crimson">{l.label}</a></li>))}
+  </ul>
+  <a href="/book-trial/" class="mt-8 rounded-full bg-crimson px-6 py-4 text-center font-bold text-cream">Book a Free Trial Class</a>
+  <p class="mt-4 text-center text-sm"><a href={contact.phoneHref} class="font-semibold text-crimson">Call {contact.phoneDisplay}</a> · <a href={`mailto:${contact.email}`} class="font-semibold text-crimson">{contact.email}</a></p>
+</div>
+<script>
+  const btn = document.getElementById('menu-btn'); const menu = document.getElementById('mobile-menu'); const close = document.getElementById('menu-close');
+  const open = () => { menu?.classList.remove('hidden'); menu?.classList.add('flex'); document.body.style.overflow = 'hidden'; btn?.setAttribute('aria-expanded','true'); };
+  const shut = () => { menu?.classList.add('hidden'); menu?.classList.remove('flex'); document.body.style.overflow = ''; btn?.setAttribute('aria-expanded','false'); };
+  btn?.addEventListener('click', open); close?.addEventListener('click', shut);
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', shut));
+</script>

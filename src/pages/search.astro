@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { courses, events, blogPosts, faqs } from '../data/site';
+const items = [
+  ...courses.map((c) => ({ title: c.title, href: `/courses/${c.slug}/`, kind: 'Course' })),
+  ...events.map((e) => ({ title: e.title, href: `/events/${e.slug}/`, kind: 'Event' })),
+  ...blogPosts.map((p) => ({ title: p.title, href: `/blog/${p.slug}/`, kind: 'Blog' })),
+  { title: 'Timetable', href: '/timetable/', kind: 'Page' }, { title: 'Pricing & Fees', href: '/pricing/', kind: 'Page' },
+  { title: 'The School & Guru Veena', href: '/school/', kind: 'Page' }, { title: 'Book a Free Trial', href: '/book-trial/', kind: 'Page' },
+  ...faqs.slice(0, 4).map((f) => ({ title: f.q, href: '/faq/', kind: 'FAQ' })),
+];
+---
+<Layout title="Search — Veena's School of Indian Dances" robots="noindex">
+  <PageHero title="Search the school" lead="Find courses, events, guides and answers." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-3xl">
+      <label for="search-input" class="mb-2 block text-sm font-bold">Search</label>
+      <input id="search-input" type="search" placeholder="Try 'Bharatanatyam', 'fees' or 'Arangetram'…" class="w-full rounded-2xl border border-line bg-white px-5 py-4 outline-none focus:border-crimson" />
+      <ul id="search-results" class="mt-6 space-y-2">
+        {items.map((i) => (<li data-search-item data-text={`${i.title} ${i.kind}`.toLowerCase()}><a href={i.href} class="flex items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 ring-1 ring-line hover:ring-crimson"><span class="font-semibold">{i.title}</span><span class="shrink-0 rounded-full bg-mist px-3 py-1 text-xs font-bold text-flame">{i.kind}</span></a></li>))}
+      </ul>
+      <p id="search-empty" class="mt-6 hidden text-ink/60">No matches — try a course name, or <a href="/contact/" class="font-bold text-crimson hover:underline">contact us</a>.</p>
+    </div>
+  </section>
+  <script>
+    const input = document.getElementById('search-input') as HTMLInputElement | null; const rows = [...document.querySelectorAll<HTMLElement>('[data-search-item]')]; const empty = document.getElementById('search-empty');
+    const q = new URLSearchParams(location.search).get('q'); if (q && input) input.value = q;
+    const run = () => { const v = (input?.value || '').trim().toLowerCase(); let n = 0; rows.forEach((r) => { const show = !v || r.dataset.text?.includes(v); r.style.display = show ? '' : 'none'; if (show) n++; }); empty?.classList.toggle('hidden', n > 0); };
+    input?.addEventListener('input', run); run();
+  </script>
+</Layout>

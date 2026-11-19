@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs } from '../data/site';
+const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+<Layout title="FAQ — Trials, Ages, Fees & Arangetram | Veena's School of Indian Dances" description="Answers for parents: free trials, starting ages, no-experience beginners, fees, missed classes and what an Arangetram involves." jsonLd={ld}>
+  <PageHero script="FAQ" title="Questions parents ask us" lead="Straight answers — and if yours isn't here, call us on 0470 552 003." />
+  <section class="px-4 py-12 sm:px-6"><div class="mx-auto max-w-3xl reveal"><FaqList items={faqs} /></div></section>
+  <CtaBand />
+</Layout>

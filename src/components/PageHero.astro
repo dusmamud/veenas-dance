@@ -1,0 +1,12 @@
+---
+export interface Props { eyebrow?: string; script?: string; title: string; lead?: string }
+const { eyebrow, script, title, lead } = Astro.props;
+---
+<section class="bg-mist px-4 pb-12 pt-12 sm:px-6 sm:pt-16">
+  <div class="mx-auto max-w-6xl">
+    {script && <p data-hero class="font-script text-5xl leading-none text-crimson">{script}</p>}
+    {eyebrow && <p data-hero class="mt-2 text-xs font-bold uppercase tracking-widest text-flame">{eyebrow}</p>}
+    <h1 data-split class="mt-2 max-w-3xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">{title}</h1>
+    {lead && <p data-hero class="mt-4 max-w-2xl text-base leading-relaxed text-ink/70">{lead}</p>}
+  </div>
+</section>

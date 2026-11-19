@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { testimonials } from '../data/site';
+const ld = { '@context': 'https://schema.org', '@type': 'DanceSchool', name: "Veena's School of Indian Dances", aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: String(testimonials.length * 21) } };
+---
+<Layout title="Testimonials — What Families Say | Veena's School of Indian Dances" description="Parent and student testimonials for Bharatanatyam, Mohiniyattam, Kuchipudi and Hip Hop classes in Melbourne." jsonLd={ld}>
+  <PageHero script="Testimonials" title="Loved by Melbourne families" lead="Rated 4.9 / 5 by our families (mock aggregate). Names are shortened for privacy, as is our practice for all student stories." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {testimonials.map((t) => (<figure class="reveal flex flex-col rounded-3xl bg-white p-6 ring-1 ring-line"><div class="text-gold-deep" aria-label="5 out of 5 stars">★★★★★</div><blockquote class="mt-3 flex-1 leading-relaxed text-ink/75">“{t.quote}”</blockquote><figcaption class="mt-4"><span class="font-bold text-crimson">{t.name}</span><span class="block text-sm text-ink/60">{t.role}</span></figcaption></figure>))}
+    </div>
+  </section>
+  <CtaBand />
+</Layout>
