@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { firstClassGuide } from '../data/site';
+---
+<Layout title="Your First Class — What to Bring, Wear & Expect | Veena's School of Indian Dances" description="A parent's guide to the first dance class: what to wear, what to bring, when to arrive, and what actually happens minute by minute — for classical and Hip Hop trials.">
+  <PageHero script="First Class" title="Your first class, without the nerves" lead="Everything a parent needs before day one — what to wear, what to bring, and exactly what happens in the room. Most children are demonstrating mudras at the dinner table by evening." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src={firstClassGuide.img} alt="Student tying ghungroo ankle bells before her first class" width="1200" height="800" loading="lazy" class="aspect-[16/9] w-full object-cover" /></figure>
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold">What to bring</h2>
+          <ul class="mt-4 space-y-3">
+            {firstClassGuide.bring.map((item) => (<li class="flex gap-3 rounded-2xl bg-mist px-4 py-3 text-sm leading-relaxed"><span aria-hidden="true" class="font-bold text-flame">✓</span><span>{item}</span></li>))}
+          </ul>
+          <h2 class="mt-8 font-display text-2xl font-bold">What to wear</h2>
+          <ul class="mt-4 space-y-3">
+            {firstClassGuide.wear.map((item) => (<li class="flex gap-3 rounded-2xl bg-white px-4 py-3 text-sm leading-relaxed ring-1 ring-line"><span aria-hidden="true" class="font-bold text-flame">✦</span><span>{item}</span></li>))}
+          </ul>
+        </div>
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold">What happens, step by step</h2>
+          <ol class="mt-5 space-y-4">
+            {firstClassGuide.happens.map((s, i) => (<li class="flex gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson font-display text-lg font-bold text-cream" aria-hidden="true">{i + 1}</span><div><h3 class="font-display text-lg font-bold">{s.t}</h3><p class="mt-1 text-sm leading-relaxed text-ink/75">{s.d}</p></div></li>))}
+          </ol>
+          <div class="mt-8 rounded-3xl bg-ink p-6 text-cream">
+            <h3 class="font-display text-xl font-bold">For parents</h3>
+            <p class="mt-2 text-sm leading-relaxed text-cream/85">Trial-class parents are welcome to watch from the viewing area. Children under 10 are collected from inside the studio, and every teacher holds a Working With Children Check — read our <a href="/child-safety/" class="font-bold text-gold hover:underline">child safety commitment</a>. Ready when you are: the first class is free.</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/book-trial/" class="rounded-full bg-saffron px-6 py-3.5 font-bold text-ink hover:bg-gold">Book a free trial</a>
+              <a href="/enrol/" class="rounded-full border border-cream/50 px-6 py-3.5 font-bold text-cream hover:bg-cream hover:text-ink">Enrol now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

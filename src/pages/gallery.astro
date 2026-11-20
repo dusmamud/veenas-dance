@@ -12,7 +12,7 @@ const cats = ['All', ...new Set(gallery.map((g) => g.cat))];
       <div id="gallery-filter" class="flex flex-wrap gap-2" role="group" aria-label="Filter gallery by category">
         {cats.map((c, i) => (<button type="button" data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'} class:list={['min-h-[44px] rounded-full px-5 py-2.5 text-sm font-bold ring-1 ring-line transition', i === 0 ? 'bg-crimson text-cream' : 'bg-white hover:bg-mist']}>{c}</button>))}
       </div>
-      <p id="gallery-count" class="mt-4 text-sm text-ink/60" aria-live="polite">Showing {gallery.length} of {gallery.length} photos</p>
+      <p id="gallery-count" class="mt-4 text-sm text-ink/75" aria-live="polite">Showing {gallery.length} of {gallery.length} photos</p>
       <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {gallery.map((g) => (<figure data-gallery-card data-category={g.cat} class="gallery-card reveal overflow-hidden rounded-3xl bg-white ring-1 ring-line"><img src={g.img} alt={g.alt} width="800" height="650" loading="lazy" class="aspect-[4/3] w-full object-cover" /><figcaption class="flex items-center justify-between gap-3 px-4 py-3 text-sm"><span>{g.caption}</span><span class="shrink-0 rounded-full bg-mist px-3 py-1 text-xs font-bold text-flame">{g.cat}</span></figcaption></figure>))}
       </div>

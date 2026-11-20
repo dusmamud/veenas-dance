@@ -64,6 +64,12 @@ input[aria-invalid="true"], textarea[aria-invalid="true"], select[aria-invalid="
 [data-magnetic] { will-change: transform; }
 .brush { background: linear-gradient(100deg,#7a1e1e,#9a3412 55%,#e8830c); }
 
+@media (max-width: 767px) {
+  /* keep floating controls clear of the sticky Call / Free Trial bar */
+  #back-to-top { bottom: 4.75rem; }
+  #toast { bottom: 5rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #site-header, #back-to-top, #toast, .faq-panel, .faq-icon, .course-card img { transition: none !important; }
   .marquee-track { animation: none !important; }

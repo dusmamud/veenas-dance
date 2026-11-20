@@ -2,13 +2,13 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, contact } from '../data/site';
+import { site, contact, rating } from '../data/site';
 interface Props { title?: string; description?: string; jsonLd?: Record<string, unknown> | Record<string, unknown>[]; ogImage?: string; ogType?: string; publishedTime?: string; robots?: string; }
 const { title = "Veena's School of Indian Dances — Bharatanatyam, Mohiniyattam, Kuchipudi & Hip Hop in Melbourne", description = site.description, jsonLd, ogImage = `${site.url}/images/og-home.jpg`, ogType = 'website', publishedTime, robots } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const crumbs = Astro.url.pathname.split('/').filter(Boolean);
 const crumbLd = crumbs.length ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Home', item: site.url + '/' }, ...crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 2, name: c.replace(/-/g, ' ').replace(/\b\w/g, (m: string) => m.toUpperCase()), item: site.url + '/' + crumbs.slice(0, i + 1).join('/') + '/' })) ] } : null;
-const schoolLd = { '@context': 'https://schema.org', '@type': 'DanceSchool', name: site.name, url: site.url, description: site.description, email: contact.email, telephone: contact.phoneIntl, address: { '@type': 'PostalAddress', streetAddress: '184 Lygon Street, Brunswick East', addressLocality: 'Melbourne', addressRegion: 'VIC', postalCode: '3057', addressCountry: 'AU' }, openingHours: 'Mo-Fr 16:00-20:00, Sa 09:00-16:00', priceRange: '$$' };
+const schoolLd = { '@context': 'https://schema.org', '@type': 'DanceSchool', name: site.name, url: site.url, description: site.description, email: contact.email, telephone: contact.phoneIntl, address: { '@type': 'PostalAddress', streetAddress: '184 Lygon Street, Brunswick East', addressLocality: 'Melbourne', addressRegion: 'VIC', postalCode: '3057', addressCountry: 'AU' }, openingHours: 'Mo-Fr 16:00-20:00, Sa 09:00-16:00', priceRange: '$$', aggregateRating: { '@type': 'AggregateRating', ratingValue: rating.value, reviewCount: rating.count } };
 ---
 <!doctype html>
 <html lang="en-AU">
@@ -44,7 +44,7 @@ const schoolLd = { '@context': 'https://schema.org', '@type': 'DanceSchool', nam
     <main id="main"><slot /></main>
     <Footer />
     <div id="scroll-progress" aria-hidden="true"></div>
-    <button id="back-to-top" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span></button>
+    <button id="back-to-top" type="button" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     <div id="toast" role="status" aria-live="polite"></div>
     <script>import '../scripts/motion.ts';</script>
   </body>

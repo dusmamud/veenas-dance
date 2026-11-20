@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { teachersFull } from '../../data/site';
+---
+<Layout title="Our Teachers — Lineage, Training & WWCC Checks | Veena's School of Indian Dances" description="Meet the teachers of Veena's School: Guru Veena Nair (Kalakshetra & Kalamandalam lineage), Ananya Rao and Jordan Lee — their training, lineage and teaching philosophy.">
+  <PageHero script="Our Teachers" title="Learn from a living lineage" lead="Students don't just join a school — they join a lineage. Meet the teachers, where they trained, and why families choose them." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-3" data-reveal-group>
+      {teachersFull.map((t) => (<article class="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-line"><img src={t.img} alt={`Portrait of ${t.name}`} width="800" height="560" loading="lazy" class="aspect-[10/7] w-full object-cover" /><div class="flex flex-1 flex-col p-6"><p class="text-xs font-bold uppercase tracking-widest text-flame">{t.years}</p><h2 class="mt-1 font-display text-2xl font-bold">{t.name}</h2><p class="text-sm font-semibold text-crimson">{t.role}</p><p class="mt-2 text-sm text-ink/75">{t.forms}</p><p class="mt-3 flex-1 text-sm leading-relaxed text-ink/75"><strong class="text-ink">Lineage:</strong> {t.lineage}</p><a href={`/teachers/${t.slug}/`} class="mt-4 inline-flex min-h-[44px] items-center font-bold text-crimson hover:underline">Meet {t.name.split(' ')[0]} →</a></div></article>))}
+    </div>
+    <p class="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-ink/75 reveal">Every teacher holds a current Victorian Working With Children Check and First Aid certification — part of our <a href="/child-safety/" class="font-bold text-crimson hover:underline">child safety commitment</a>.</p>
+  </section>
+  <CtaBand />
+</Layout>

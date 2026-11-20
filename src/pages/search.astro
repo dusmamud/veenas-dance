@@ -7,6 +7,10 @@ const items = [
   ...events.map((e) => ({ title: e.title, href: `/events/${e.slug}/`, kind: 'Event' })),
   ...blogPosts.map((p) => ({ title: p.title, href: `/blog/${p.slug}/`, kind: 'Blog' })),
   { title: 'Timetable', href: '/timetable/', kind: 'Page' }, { title: 'Pricing & Fees', href: '/pricing/', kind: 'Page' },
+  { title: 'Child Safety & WWCC', href: '/child-safety/', kind: 'Page' }, { title: 'Arangetram — Debut Solo', href: '/arangetram/', kind: 'Page' },
+  { title: 'Enrol Now', href: '/enrol/', kind: 'Page' }, { title: 'Term Dates 2027', href: '/term-dates/', kind: 'Page' },
+  { title: 'Classes by Age', href: '/classes-by-age/', kind: 'Page' }, { title: 'Hire the Troupe — Performances', href: '/performances/', kind: 'Page' },
+  { title: 'Our Teachers & Lineage', href: '/teachers/', kind: 'Page' }, { title: 'Your First Class Guide', href: '/first-class/', kind: 'Page' },
   { title: 'The School & Guru Veena', href: '/school/', kind: 'Page' }, { title: 'Book a Free Trial', href: '/book-trial/', kind: 'Page' },
   ...faqs.slice(0, 4).map((f) => ({ title: f.q, href: '/faq/', kind: 'FAQ' })),
 ];
@@ -20,7 +24,7 @@ const items = [
       <ul id="search-results" class="mt-6 space-y-2">
         {items.map((i) => (<li data-search-item data-text={`${i.title} ${i.kind}`.toLowerCase()}><a href={i.href} class="flex items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 ring-1 ring-line hover:ring-crimson"><span class="font-semibold">{i.title}</span><span class="shrink-0 rounded-full bg-mist px-3 py-1 text-xs font-bold text-flame">{i.kind}</span></a></li>))}
       </ul>
-      <p id="search-empty" class="mt-6 hidden text-ink/60">No matches — try a course name, or <a href="/contact/" class="font-bold text-crimson hover:underline">contact us</a>.</p>
+      <p id="search-empty" class="mt-6 hidden text-ink/75">No matches — try a course name, or <a href="/contact/" class="font-bold text-crimson hover:underline">contact us</a>.</p>
     </div>
   </section>
   <script>

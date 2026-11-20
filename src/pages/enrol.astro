@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { enrolSteps, courses, pricing, contact } from '../data/site';
+const inputCls = 'w-full rounded-2xl border border-line bg-white px-4 py-3.5 outline-none focus:border-crimson';
+---
+<Layout title="Enrol Now — Join Veena's School of Indian Dances, Melbourne" description="Enrol in Bharatanatyam, Mohiniyattam, Kuchipudi or Hip Hop in three steps: free trial, enrolment form, begin in Week 1. Fees, consents and policies explained clearly.">
+  <PageHero script="Enrol" title="Enrol in three easy steps" lead="No auditions and no pressure — every enrolment starts with a free trial class, so your child meets the teacher before you commit to anything." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <ol class="grid gap-5 md:grid-cols-3" data-reveal-group>
+        {enrolSteps.map((s) => (<li class="rounded-3xl bg-white p-6 ring-1 ring-line"><p class="font-display text-3xl font-bold text-flame">{s.n}</p><h2 class="mt-2 font-display text-xl font-bold">{s.t}</h2><p class="mt-2 text-sm leading-relaxed text-ink/75">{s.d}</p></li>))}
+      </ol>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[1.5fr_1fr]">
+        <form id="enrol-form" class="reveal rounded-3xl bg-white p-6 ring-1 ring-line sm:p-8" novalidate>
+          <h2 class="font-display text-2xl font-bold">Enrolment form</h2>
+          <p class="mt-1 text-sm text-ink/75">Parents complete this form (not students). We confirm your batch within one business day. Demo form — no data leaves your browser.</p>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2">
+            <div><label for="ef-parent" class="mb-1.5 block text-sm font-bold">Parent / guardian name *</label><input id="ef-parent" type="text" autocomplete="name" class={inputCls} /><p id="ef-parent-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            <div><label for="ef-email" class="mb-1.5 block text-sm font-bold">Parent email *</label><input id="ef-email" type="email" autocomplete="email" class={inputCls} /><p id="ef-email-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            <div><label for="ef-phone" class="mb-1.5 block text-sm font-bold">Parent mobile *</label><input id="ef-phone" type="tel" autocomplete="tel" class={inputCls} /><p id="ef-phone-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            <div><label for="ef-student" class="mb-1.5 block text-sm font-bold">Student first name *</label><input id="ef-student" type="text" class={inputCls} /><p id="ef-student-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            <div><label for="ef-age" class="mb-1.5 block text-sm font-bold">Student age *</label><input id="ef-age" type="number" min="4" max="99" inputmode="numeric" class={inputCls} /><p id="ef-age-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            <div><label for="ef-course" class="mb-1.5 block text-sm font-bold">Course *</label><select id="ef-course" class={inputCls}><option value="">Choose a course…</option>{courses.map((c) => (<option value={c.title}>{c.title} ({c.ages})</option>))}<option value="Not sure yet">Not sure yet — advise us</option></select><p id="ef-course-error" class="field-error invisible text-red-700" role="alert"></p></div>
+          </div>
+          <div class="mt-5"><label for="ef-medical" class="mb-1.5 block text-sm font-bold">Medical notes or learning needs <span class="font-normal text-ink/75">(optional, shared only with the teacher)</span></label><textarea id="ef-medical" rows="3" class={inputCls} placeholder="Asthma, injuries, allergies — anything that helps us keep your child safe"></textarea></div>
+          <fieldset class="mt-6 space-y-3">
+            <legend class="text-sm font-bold">Consents *</legend>
+            <label class="flex min-h-[44px] items-start gap-3 text-sm leading-relaxed"><input id="ef-consent-policies" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#7a1e1e]" /><span>I have read the <a href="/pricing/" class="font-bold text-crimson hover:underline">fees & policies</a> and the <a href="/child-safety/" class="font-bold text-crimson hover:underline">child safety commitment</a>, and I agree to the missed-class and withdrawal policies.</span></label>
+            <p id="ef-consent-policies-error" class="field-error invisible text-red-700" role="alert"></p>
+            <label class="flex min-h-[44px] items-start gap-3 text-sm leading-relaxed"><input id="ef-consent-photo" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#7a1e1e]" /><span>Photo/video consent: the school may photograph my child in class and performances for the gallery and social media (no surnames, ever). Leave unticked to opt out — your child is fully included either way.</span></label>
+          </fieldset>
+          <button type="submit" class="mt-7 w-full rounded-full bg-crimson px-7 py-4 font-bold text-cream transition hover:bg-crimson-deep sm:w-auto">Submit enrolment</button>
+        </form>
+        <div id="enrol-success" class="hidden rounded-3xl bg-ink p-8 text-cream" role="status">
+          <p class="font-script text-4xl text-gold">Welcome to the family</p>
+          <h2 class="mt-2 font-display text-2xl font-bold">Enrolment received (mock)</h2>
+          <p class="mt-3 leading-relaxed text-cream/85">Your reference is <strong id="enrol-ref" class="text-gold">VS-0000</strong>. We will email your batch confirmation, Week 1 details and payment options within one business day.</p>
+          <p class="mt-3 text-sm text-cream/75">Haven't done your free trial yet? <a href="/book-trial/" class="font-bold text-gold hover:underline">Book it here</a> — trials run every week.</p>
+        </div>
+        <aside class="reveal">
+          <div class="rounded-3xl bg-mist p-6">
+            <h2 class="font-display text-xl font-bold">Fees at a glance</h2>
+            <ul class="mt-3 space-y-2 text-sm">
+              {pricing.rows.slice(0, 4).map((r) => (<li class="flex justify-between gap-3 border-b border-line pb-2"><span>{r.item}</span><strong class="shrink-0">{r.price}</strong></li>))}
+            </ul>
+            <p class="mt-3 text-sm text-ink/75">Sibling, multi-class and early-bird discounts apply — <a href="/pricing/" class="font-bold text-crimson hover:underline">full pricing & policies</a>.</p>
+          </div>
+          <div class="mt-5 rounded-3xl bg-white p-6 ring-1 ring-line">
+            <h2 class="font-display text-xl font-bold">Questions first?</h2>
+            <p class="mt-2 text-sm leading-relaxed text-ink/75">Call us on <a href={contact.phoneHref} class="font-bold text-crimson hover:underline">{contact.phoneDisplay}</a>, read <a href="/first-class/" class="font-bold text-crimson hover:underline">what a first class is like</a>, or check <a href="/term-dates/" class="font-bold text-crimson hover:underline">2027 term dates</a>.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

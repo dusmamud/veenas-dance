@@ -1,12 +1,13 @@
 ---
-interface Props { slug: string; title: string; img: string; short: string; ages: string; feeHint: string }
-const { slug, title, img, short, ages, feeHint } = Astro.props;
+interface Props { slug: string; title: string; img: string; short: string; ages: string; feeHint: string; level?: 2 | 3 }
+const { slug, title, img, short, ages, feeHint, level = 3 } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
 ---
 <article class="course-card reveal overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-line">
   <a href={`/courses/${slug}/`} class="block overflow-hidden"><img src={img} alt={`${title} dancer`} width="800" height="600" loading="lazy" class="aspect-[4/3] w-full object-cover" /></a>
   <div class="p-5">
     <p class="text-xs font-bold uppercase tracking-widest text-flame">{ages} · {feeHint}</p>
-    <h3 class="mt-1 font-display text-2xl font-bold"><a href={`/courses/${slug}/`} class="hover:text-crimson">{title}</a></h3>
+    <Heading class="mt-1 font-display text-2xl font-bold"><a href={`/courses/${slug}/`} class="hover:text-crimson">{title}</a></Heading>
     <p class="mt-2 text-sm leading-relaxed text-ink/70">{short}</p>
     <a href={`/courses/${slug}/`} class="mt-4 inline-flex min-h-[44px] items-center font-bold text-crimson hover:underline">Explore the course <span aria-hidden="true" class="ml-1">→</span></a>
   </div>

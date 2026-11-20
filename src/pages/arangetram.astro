@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import { arangetramInfo, faqs } from '../data/site';
+const arangetramFaqs = faqs.filter((f) => f.q.toLowerCase().includes('arangetram'));
+---
+<Layout title="Arangetram — The Debut Solo, Guided End to End | Veena's School of Indian Dances" description="What an Arangetram is, how a student knows they are ready, what preparation includes (choreography, live orchestra, costume, theatre) and past debuts at Veena's School in Melbourne.">
+  <PageHero script="Arangetram" title="The debut every dancer dreams of" lead="A two-hour solo on a theatre stage, with live musicians, in full costume — the graduation of a classical dancer. Here is the journey, honestly explained." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src={arangetramInfo.img} alt="Arangetram debut solo on stage with live musicians" width="1200" height="800" loading="lazy" class="aspect-[16/9] w-full object-cover" /></figure>
+
+      <div class="mt-12">
+        <h2 class="text-center font-display text-3xl font-bold reveal">The journey, step by step</h2>
+        <ol class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+          {arangetramInfo.steps.map((s) => (<li class="rounded-3xl bg-white p-6 ring-1 ring-line"><p class="font-display text-3xl font-bold text-flame">{s.n}</p><h3 class="mt-2 font-display text-xl font-bold">{s.t}</h3><p class="mt-2 text-sm leading-relaxed text-ink/75">{s.d}</p></li>))}
+        </ol>
+      </div>
+
+      <div class="mt-12 grid gap-10 lg:grid-cols-2">
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold">Signs a student is ready</h2>
+          <ul class="mt-4 space-y-3">
+            {arangetramInfo.readiness.map((r) => (<li class="flex gap-3 rounded-2xl bg-mist px-4 py-3 text-sm leading-relaxed"><span aria-hidden="true" class="font-bold text-flame">✓</span><span>{r}</span></li>))}
+          </ul>
+        </div>
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold">What preparation includes</h2>
+          <ul class="mt-4 space-y-3">
+            {arangetramInfo.included.map((r) => (<li class="flex gap-3 rounded-2xl bg-white px-4 py-3 text-sm leading-relaxed ring-1 ring-line"><span aria-hidden="true" class="font-bold text-flame">✦</span><span>{r}</span></li>))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-center font-display text-3xl font-bold reveal">Recent debuts at our school</h2>
+        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+          {arangetramInfo.debuts.map((d) => (<article class="rounded-3xl bg-ink p-6 text-cream"><p class="font-script text-4xl text-gold">{d.name}</p><p class="mt-1 text-sm font-bold text-cream/75">Arangetram {d.year} (mock)</p><p class="mt-2 text-sm leading-relaxed text-cream/85">{d.note}</p></article>))}
+        </div>
+        <p class="mt-6 text-center text-sm text-ink/75 reveal">First names only — we never publish students' surnames. See our <a href="/child-safety/" class="font-bold text-crimson hover:underline">child safety commitment</a>.</p>
+      </div>
+
+      {arangetramFaqs.length > 0 && (<div class="mx-auto mt-12 max-w-3xl reveal"><h2 class="text-center font-display text-2xl font-bold">Arangetram questions</h2><div class="mt-6"><FaqList items={arangetramFaqs} /></div></div>)}
+      <p class="mt-8 text-center reveal"><a href="/blog/what-is-arangetram/" class="font-bold text-crimson hover:underline">Read our parent's guide: What is an Arangetram? →</a></p>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

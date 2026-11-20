@@ -4,15 +4,15 @@ import CourseCard from '../components/CourseCard.astro';
 import EventCard from '../components/EventCard.astro';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, contact, stats, courses, events, testimonials, faqs, timetable, gallery, levels } from '../data/site';
+import { site, contact, stats, courses, events, testimonials, faqs, timetable, gallery, levels, rating, ageGroups, socials } from '../data/site';
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.slice(0, 5).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const todayClasses = timetable[0];
 ---
 <Layout jsonLd={faqLd}>
   <!-- HERO -->
   <section class="relative overflow-hidden bg-ink text-cream">
-    <img src="/images/hero-dancer.webp" alt="Bharatanatyam dancer in red and cream silk costume in araimandi pose" width="1200" height="900" fetchpriority="high" loading="eager" class="absolute inset-0 h-full w-full object-cover opacity-45" />
-    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent"></div>
+    <img src="/images/hero-dancer.webp" alt="Bharatanatyam dancer in red and cream silk costume in araimandi pose" width="1200" height="800" fetchpriority="high" loading="eager" data-parallax class="absolute inset-0 h-full w-full scale-105 object-cover opacity-60" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/75 to-ink/10"></div>
     <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
       <p data-hero class="font-script text-5xl text-gold sm:text-6xl">Welcome to</p>
       <h1 data-hero class="mt-2 max-w-2xl font-display text-4xl font-bold leading-[1.05] sm:text-6xl">Veena's School of Indian Dances</h1>
@@ -22,13 +22,17 @@ const todayClasses = timetable[0];
         <a href="/courses/" class="rounded-full border border-cream/50 px-7 py-4 font-bold text-cream transition hover:bg-cream hover:text-ink">Explore Courses</a>
       </div>
       <p data-hero class="mt-4 text-sm text-cream/70">Call <a href={contact.phoneHref} class="font-semibold text-gold hover:underline">{contact.phoneDisplay}</a> · Brunswick East, Melbourne</p>
+      <div data-hero class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <p><span class="text-gold" aria-hidden="true">★★★★★</span> <strong>{rating.value} / 5</strong> <span class="text-cream/75">from {rating.count} family reviews (mock)</span></p>
+        <a href="/child-safety/" class="font-semibold text-cream underline decoration-gold decoration-2 underline-offset-4 hover:text-gold">All teachers WWCC-checked · Child Safe Standards →</a>
+      </div>
     </div>
   </section>
 
   <!-- STATS -->
   <section class="border-b border-line bg-mist px-4 py-8 sm:px-6" aria-label="School highlights">
     <div class="mx-auto grid max-w-6xl grid-cols-2 gap-6 lg:grid-cols-4">
-      {stats.map((s) => (<div class="reveal text-center"><p class="font-display text-4xl font-bold text-crimson"><span data-count={s.value}>{s.value.toLocaleString('en-AU')}</span>{s.suffix}</p><p class="mt-1 text-sm font-bold">{s.label}</p><p class="text-xs text-ink/60">{s.sub}</p></div>))}
+      {stats.map((s) => (<div class="reveal text-center"><p class="font-display text-4xl font-bold text-crimson"><span data-count={s.value}>{s.value.toLocaleString('en-AU')}</span>{s.suffix}</p><p class="mt-1 text-sm font-bold">{s.label}</p><p class="text-xs text-ink/75">{s.sub}</p></div>))}
     </div>
   </section>
 
@@ -80,7 +84,7 @@ const todayClasses = timetable[0];
           { n: '02', t: 'Intermediate', d: 'First repertoire items, theory and stage experience at Taal each year.' },
           { n: '03', t: 'Advanced', d: 'Varnam and padams — stamina, depth and mature abhinaya.' },
           { n: '04', t: 'Arangetram Preparation', d: 'By invitation: a full solo debut with live musicians, guided end to end.' },
-        ].map((s) => (<li class="reveal rounded-3xl bg-white p-6 ring-1 ring-line"><p class="font-display text-3xl font-bold text-saffron">{s.n}</p><h3 class="mt-2 font-display text-xl font-bold">{s.t}</h3><p class="mt-2 text-sm leading-relaxed text-ink/70">{s.d}</p></li>))}
+        ].map((s) => (<li class="reveal rounded-3xl bg-white p-6 ring-1 ring-line"><p class="font-display text-3xl font-bold text-flame">{s.n}</p><h3 class="mt-2 font-display text-xl font-bold">{s.t}</h3><p class="mt-2 text-sm leading-relaxed text-ink/70">{s.d}</p></li>))}
       </ol>
       <p class="reveal mt-8 text-center"><a href="/timetable/" class="font-bold text-crimson hover:underline">See the full timetable →</a> · <a href="/pricing/" class="font-bold text-crimson hover:underline">Fees & policies →</a></p>
     </div>
@@ -106,12 +110,12 @@ const todayClasses = timetable[0];
       <h2 class="mt-1 font-display text-3xl font-bold reveal">What families say</h2>
       <div class="relative mt-8 overflow-hidden reveal" id="testi-viewport">
         <div id="testi-track" class="testi-track flex">
-          {testimonials.map((t) => (<figure data-slide class="w-full shrink-0 px-2"><blockquote class="text-lg leading-relaxed text-ink/80 sm:text-xl">“{t.quote}”</blockquote><figcaption class="mt-4"><span class="font-bold text-crimson">{t.name}</span><span class="block text-sm text-ink/60">{t.role}</span></figcaption></figure>))}
+          {testimonials.map((t) => (<figure data-slide class="w-full shrink-0 px-2"><blockquote class="text-lg leading-relaxed text-ink/80 sm:text-xl">“{t.quote}”</blockquote><figcaption class="mt-4"><span class="font-bold text-crimson">{t.name}</span><span class="block text-sm text-ink/75">{t.role}</span></figcaption></figure>))}
         </div>
       </div>
       <div class="mt-6 flex items-center justify-center gap-3">
         <button id="testi-prev" type="button" aria-label="Previous testimonial" class="grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:bg-mist">←</button>
-        <div class="flex gap-2">{testimonials.map((_, i) => (<button type="button" data-dot aria-label={`Testimonial ${i + 1}`} class:list={['h-3 w-3 rounded-full', i === 0 ? 'bg-crimson' : 'bg-crimson/25']}></button>))}</div>
+        <div class="flex gap-1">{testimonials.map((_, i) => (<button type="button" data-dot aria-label={`Testimonial ${i + 1}`} class="grid h-7 w-7 place-items-center"><span class:list={['pointer-events-none block h-3 w-3 rounded-full', i === 0 ? 'bg-crimson' : 'bg-crimson/25']}></span></button>))}</div>
         <button id="testi-next" type="button" aria-label="Next testimonial" class="grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:bg-mist">→</button>
       </div>
       <a href="/testimonials/" class="mt-6 inline-block font-bold text-crimson hover:underline">Read all testimonials →</a>
@@ -132,6 +136,43 @@ const todayClasses = timetable[0];
       <div class="flex flex-wrap items-end justify-between gap-4 reveal"><div><p class="font-script text-5xl text-crimson">Gallery</p><h2 class="mt-1 font-display text-3xl font-bold">Moments we treasure</h2></div><a href="/gallery/" class="font-bold text-crimson hover:underline">View the photo gallery →</a></div>
       <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {gallery.slice(0, 4).map((g) => (<figure class="gallery-card reveal overflow-hidden rounded-3xl"><img src={g.img} alt={g.alt} width="600" height="600" loading="lazy" class="aspect-square w-full object-cover" /><figcaption class="sr-only">{g.caption}</figcaption></figure>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSES BY AGE -->
+  <section class="bg-mist px-4 py-14 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center reveal"><p class="font-script text-5xl text-crimson">Every Age</p><h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">Classes by age</h2><p class="mx-auto mt-3 max-w-2xl text-ink/75">Parents think in ages, so we organise that way too — from Little Dancers at five to adults starting at forty.</p></div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {ageGroups.map((g) => (<article class="reveal overflow-hidden rounded-3xl bg-white ring-1 ring-line"><img src={g.img} alt={`${g.title} class at Veena's School`} width="700" height="500" loading="lazy" class="aspect-[7/5] w-full object-cover" /><div class="p-5"><p class="text-xs font-bold uppercase tracking-widest text-flame">{g.ages}</p><h3 class="mt-1 font-display text-xl font-bold">{g.title}</h3><p class="mt-2 text-sm leading-relaxed text-ink/75">{g.text}</p></div></article>))}
+      </div>
+      <p class="mt-8 text-center reveal"><a href="/classes-by-age/" class="font-bold text-crimson hover:underline">See classes by age, with batches & times →</a></p>
+    </div>
+  </section>
+
+  <!-- PERFORMANCES / HIRE -->
+  <section class="px-4 py-14 sm:px-6">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src="/images/troupe-performance.webp" alt="Veena's School troupe performing at a wedding celebration" width="1000" height="700" loading="lazy" class="aspect-[10/7] w-full object-cover" /></figure>
+      <div class="reveal">
+        <p class="font-script text-5xl text-crimson">On Your Stage</p>
+        <h2 class="mt-1 font-display text-3xl font-bold sm:text-4xl">Hire the troupe</h2>
+        <p class="mt-4 leading-relaxed text-ink/75">Weddings, festivals and corporate cultural programs across Melbourne — a professional troupe of senior students and teachers, in full costume, with music and MC notes supplied.</p>
+        <a href="/performances/" class="mt-6 inline-block rounded-full bg-crimson px-6 py-3.5 font-bold text-cream transition hover:bg-crimson-deep">Performances & booking →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="bg-ink px-4 py-14 text-cream sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-wrap items-end justify-between gap-4 reveal">
+        <div><p class="font-script text-4xl text-gold">Follow Along</p><h2 class="mt-1 font-display text-3xl font-bold">{socials[0].handle} on Instagram</h2></div>
+        <a href={socials[0].href} target="_blank" rel="noopener" class="rounded-full bg-cream px-5 py-3 text-sm font-bold text-ink hover:bg-gold">Follow the school</a>
+      </div>
+      <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {gallery.slice(4, 8).map((g) => (<a href={socials[0].href} target="_blank" rel="noopener" aria-label={`Instagram — ${g.caption}`} class="gallery-card reveal block overflow-hidden rounded-3xl"><img src={g.img} alt={g.alt} width="600" height="600" loading="lazy" class="aspect-square w-full object-cover" /></a>))}
       </div>
     </div>
   </section>

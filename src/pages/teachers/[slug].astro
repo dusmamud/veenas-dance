@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { teachersFull, timetable } from '../../data/site';
+export function getStaticPaths() { return teachersFull.map((t) => ({ params: { slug: t.slug }, props: { teacher: t } })); }
+const { teacher } = Astro.props;
+const firstName = teacher.name.split(' ')[0];
+const myClasses = timetable.flatMap((d) => d.classes.filter((c) => c.teacher === firstName).map((c) => ({ ...c, day: d.day })));
+const personLd = { '@context': 'https://schema.org', '@type': 'Person', name: teacher.name, jobTitle: teacher.role, worksFor: { '@type': 'DanceSchool', name: "Veena's School of Indian Dances" }, description: teacher.lineage };
+---
+<Layout title={`${teacher.name} — ${teacher.role} | Veena's School of Indian Dances`} description={`${teacher.name}: ${teacher.lineage}. ${teacher.years} at Veena's School of Indian Dances, Melbourne.`} jsonLd={personLd}>
+  <PageHero eyebrow={teacher.forms} title={teacher.name} lead={`${teacher.role} · ${teacher.years}`} />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src={teacher.img} alt={`Portrait of ${teacher.name}`} width="900" height="700" loading="lazy" class="aspect-[9/7] w-full object-cover" /></figure>
+      <div class="reveal">
+        <h2 class="font-display text-2xl font-bold">Training & lineage</h2>
+        <p class="mt-2 leading-relaxed text-ink/75">{teacher.lineage}</p>
+        {teacher.bio.map((p) => (<p class="mt-4 leading-relaxed text-ink/75">{p}</p>))}
+        <blockquote class="mt-6 rounded-3xl bg-mist p-6 font-display text-xl font-bold leading-relaxed text-crimson">“{teacher.quote}”</blockquote>
+        {myClasses.length > 0 && (<>
+          <h2 class="mt-8 font-display text-2xl font-bold">Classes with {firstName}</h2>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            {myClasses.map((c) => (<article class="rounded-2xl bg-white p-4 ring-1 ring-line"><p class="text-xs font-bold text-flame">{c.day} · {c.time}</p><p class="mt-0.5 font-semibold">{c.name}</p><p class="text-xs text-ink/75">{c.age} · {c.level}</p></article>))}
+          </div>
+        </>)}
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/book-trial/" class="rounded-full bg-crimson px-6 py-3.5 font-bold text-cream hover:bg-crimson-deep">Book a free trial</a>
+          <a href="/teachers/" class="rounded-full border-2 border-crimson px-6 py-3.5 font-bold text-crimson hover:bg-mist">All teachers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

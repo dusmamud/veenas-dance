@@ -6,7 +6,7 @@ export const site = {
   name: "Veena's School of Indian Dances",
   shortName: "Veena's School",
   tagline: 'Where tradition learns to move',
-  url: 'https://veenasschoolofindiandances.pages.dev',
+  url: 'https://veenas-dance.pages.dev',
   description:
     "Veena's School of Indian Dances in Melbourne teaches Bharatanatyam, Mohiniyattam, Kuchipudi and Hip Hop for ages 5 to adult — small classes, a caring Guru, and a clear path from first adavu to Arangetram. Book a free trial class.",
   year: 2026,
@@ -23,10 +23,12 @@ export const contact = {
 };
 
 export const socials = [
-  { label: 'Instagram', href: '#' },
-  { label: 'Facebook', href: '#' },
-  { label: 'YouTube', href: '#' },
+  { label: 'Instagram', href: 'https://www.instagram.com/veenasschool.melbourne', handle: '@veenasschool.melbourne' },
+  { label: 'Facebook', href: 'https://www.facebook.com/veenasschoolofindiandances', handle: 'VeenasSchoolofIndianDances' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@VeenasSchoolofIndianDances', handle: '@VeenasSchoolofIndianDances' },
 ];
+
+export const rating = { value: 4.9, count: 127, source: 'Google reviews (mock)' };
 
 export const stats = [
   { value: 18, suffix: '+', label: 'Years Teaching', sub: 'in Melbourne' },
@@ -177,8 +179,8 @@ export const guru = {
 
 export const teachers = [
   { name: 'Veena Nair', role: 'Guru — Bharatanatyam, Mohiniyattam, Kuchipudi', img: '/images/guru-veena.webp', text: 'Founder and principal teacher for all classical forms.' },
-  { name: 'Ananya Rao', role: 'Assistant Teacher — Bharatanatyam', img: '/images/welcome-dancer.webp', text: 'Veena\u2019s senior disciple; leads Foundation batches and theory classes.' },
-  { name: 'Jordan Lee', role: 'Hip Hop Instructor', img: '/images/course-hiphop.webp', text: 'Street styles specialist with 10 years of crew and battle experience.' },
+  { name: 'Ananya Rao', role: 'Assistant Teacher — Bharatanatyam', img: '/images/teacher-ananya.webp', text: 'Veena\u2019s senior disciple; leads Foundation batches and theory classes.' },
+  { name: 'Jordan Lee', role: 'Hip Hop Instructor', img: '/images/teacher-jordan.webp', text: 'Street styles specialist with 10 years of crew and battle experience.' },
 ];
 
 export const timeline = [
@@ -206,6 +208,9 @@ export const gallery = [
   { img: '/images/course-hiphop.webp', cat: 'Hip Hop', caption: 'Teens crew — end-of-term showcase', alt: 'Hip hop dancer in a dynamic freeze pose' },
   { img: '/images/studio-wide.webp', cat: 'Classes', caption: 'Our Brunswick East studio', alt: 'Wide view of the dance studio with Nataraja statue' },
   { img: '/images/event-taal.webp', cat: 'Performances', caption: 'Taal — The Rhythm of Dance, finale', alt: 'Group classical dance performance on stage under spotlights' },
+  { img: '/images/arangetram-stage.webp', cat: 'Arangetram', caption: 'Arangetram debut with live orchestra', alt: 'Arangetram debut solo on stage with live Carnatic musicians' },
+  { img: '/images/troupe-performance.webp', cat: 'Performances', caption: 'The troupe at a Melbourne wedding', alt: 'Dance troupe performing at a wedding celebration' },
+  { img: '/images/teacher-students.webp', cat: 'Classes', caption: 'Guided practice in Studio A', alt: 'Teacher guiding students during class, seen from behind' },
 ];
 
 export const events = [
@@ -336,4 +341,122 @@ export const blogPosts = [
       'Our honest advice: watch both. Bring your child to a trial class in each form, and watch their face, not their feet. Children choose with their whole bodies — one form will make them lean forward. That lean is worth more than any comparison chart, including this one. And remember, many of our senior students eventually study both. The forms are different languages, and bilingual dancers are richer for it.',
     ],
   },
+];
+
+// ── Upgrade additions (mock) ──────────────────────────────────────────────
+export const teachersFull = [
+  {
+    slug: 'veena-nair', name: 'Veena Nair', role: 'Founder, Guru & Artistic Director',
+    forms: 'Bharatanatyam · Mohiniyattam · Kuchipudi', img: '/images/guru-veena.webp',
+    lineage: 'Disciple of gurus in Chennai (Kalakshetra tradition) and Kalamandalam, Kerala',
+    years: '18+ years teaching',
+    bio: [
+      'Veena began dancing at five in Kerala and trained intensively in Chennai, completing her own Arangetram before performing across India. Her Bharatanatyam lineage traces to the Kalakshetra tradition — known for clarity, geometry and devotion — and her Mohiniyattam training comes from Kalamandalam, Kerala\u2019s legendary arts university.',
+      'Since founding the school in Melbourne in 2008 (mock), she has taught 650+ students, choreographed 42 Arangetrams and more than 120 stage productions. She still teaches every classical batch personally, because she believes a Guru should know every student\u2019s araimandi by sight.',
+      'Veena holds a Diploma in Bharatanatyam, advanced training in Mohiniyattam and Kuchipudi, a current Victorian Working With Children Check and First Aid certification.',
+    ],
+    quote: 'Dance is not steps. Steps are just how the story travels — we teach the story.',
+  },
+  {
+    slug: 'ananya-rao', name: 'Ananya Rao', role: 'Assistant Teacher — Bharatanatyam',
+    forms: 'Bharatanatyam · Theory & Nattuvangam basics', img: '/images/teacher-ananya.webp',
+    lineage: 'Senior disciple of Guru Veena Nair; Arangetram 2016 (mock)',
+    years: '9 years teaching',
+    bio: [
+      'Ananya joined Veena\u2019s School as a shy nine-year-old and completed her Arangetram in 2016. She now leads the Foundation batches and theory classes, and is famous among parents for practice notes so clear that children actually follow them.',
+      'She specialises in the early years: posture without tears, rhythm through games, and mudras taught as stories. Ananya also conducts nattuvangam (hand cymbals) for school performances and holds a current Victorian Working With Children Check and First Aid certification.',
+    ],
+    quote: 'A five-year-old remembers “the lotus opening” long after she forgets a Sanskrit list. Teach the story first.',
+  },
+  {
+    slug: 'jordan-lee', name: 'Jordan Lee', role: 'Hip Hop Instructor',
+    forms: 'Hip Hop · Street styles · Freestyle', img: '/images/teacher-jordan.webp',
+    lineage: 'Melbourne street-dance crews; 10 years of battle and showcase experience (mock)',
+    years: '10 years teaching',
+    bio: [
+      'Jordan brings a decade of Melbourne crew, battle and showcase experience to our Hip Hop program. His classes teach real foundations — groove, bounce, isolations, footwork — with the same structure and respect as our classical program.',
+      'Parents love that Jordan\u2019s room is high-energy but never high-pressure: no auditions, clear progressions, and an end-of-term showcase where every crew performs. Jordan holds a current Victorian Working With Children Check and First Aid certification.',
+    ],
+    quote: 'Confidence is a skill. We practise it like any other step — every single class.',
+  },
+];
+
+export const ageGroups = [
+  { slug: 'little-dancers', title: 'Little Dancers', ages: 'Ages 5–7', img: '/images/little-dancers.webp', text: 'First steps through stories and games — posture, rhythm and mudras taught as play, in 45–60 minute classes with a parent viewing area.', classes: ['Bharatanatyam Foundation (Sat & Mon)', 'Hip Hop Juniors from age 6'], note: 'Best start: Bharatanatyam Foundation, Saturday 9am with Ananya.' },
+  { slug: 'juniors', title: 'Juniors', ages: 'Ages 8–12', img: '/images/gallery-class.webp', text: 'The building years — full adavu sets, first repertoire items, theory notebooks and a first taste of the Taal stage.', classes: ['Bharatanatyam Foundation & Intermediate', 'Kuchipudi Foundation', 'Mohiniyattam Foundation (8+)', 'Hip Hop Intermediates (10–13)'], note: 'Most juniors take one class a week; keen dancers add a second form at the multi-class discount.' },
+  { slug: 'teens', title: 'Teens', ages: 'Ages 13–17', img: '/images/gallery-arangetram.webp', text: 'Serious training with serious joy — varnam-level repertoire, abhinaya depth, performance troupe opportunities and the Arangetram pathway.', classes: ['Bharatanatyam Intermediate & Advanced', 'Kuchipudi Intermediate & Advanced', 'Mohiniyattam Advanced (14+)', 'Hip Hop Teens'], note: 'Teens preparing for Arangetram join the Saturday preparation batch by invitation.' },
+  { slug: 'adults', title: 'Adults', ages: 'Ages 18+', img: '/images/teacher-students.webp', text: 'Beginners absolutely welcome — many of our adult students had never danced before. Fitness, culture, music and one hour a week that is entirely yours.', classes: ['Adult Classical — mixed forms (Sat 12pm)', 'Mohiniyattam Foundation for adults', 'Private lessons by arrangement'], note: 'No leotards, no judgement — practice saree or comfortable salwar, and a water bottle.' },
+];
+
+export const terms2027 = [
+  { term: 'Term 1', dates: 'Mon 25 Jan – Sat 3 Apr 2027', weeks: 10, notes: 'Open Day & free trials: Sat 23 Jan. No classes Fri 26 Jan (Australia Day) or Mon 8 Mar (Labour Day) — make-ups in Week 10.' },
+  { term: 'Term 2', dates: 'Mon 19 Apr – Sat 26 Jun 2027', weeks: 10, notes: 'Taal — The Rhythm of Dance: Sat 19 Jun, Clocktower Centre. Dress rehearsal Thu 17 Jun (evening, students only).' },
+  { term: 'Term 3', dates: 'Mon 12 Jul – Sat 18 Sep 2027', weeks: 10, notes: 'Mid-year exams & level assessments in Weeks 8–9. Abhinaya workshop weekend: 14–15 Aug (mock).' },
+  { term: 'Term 4', dates: 'Mon 4 Oct – Sat 11 Dec 2027', weeks: 10, notes: 'Arangetram season: Oct–Nov (dates per family). End-of-year studio showcase & awards: Sat 11 Dec.' },
+];
+export const keyDates2027 = [
+  { date: 'Sat 23 Jan 2027', event: 'Open Day & Free Trial Classes', href: '/events/open-day-free-trials-2027/' },
+  { date: 'Sat 13 Mar 2027', event: 'Abhinaya Weekend Workshop', href: '/events/abhinaya-workshop-2027/' },
+  { date: 'Sat 19 Jun 2027', event: 'Taal — The Rhythm of Dance (annual recital)', href: '/events/taal-rhythm-of-dance-2027/' },
+  { date: 'Weeks 8–9, Term 3', event: 'Level assessments & exams', href: '/term-dates/' },
+  { date: 'Sat 11 Dec 2027', event: 'End-of-year showcase & awards', href: '/term-dates/' },
+];
+
+export const arangetramInfo = {
+  img: '/images/arangetram-stage.webp',
+  readiness: ['Technique secure across the full margam — alarippu to tillana', 'A varnam that can hold an audience for 30 minutes', 'Abhinaya maturity: padams performed with understanding, not imitation', 'Stamina for a two-hour solo with live musicians', 'Six to nine months of serious, consistent rehearsal commitment'],
+  included: ['Personal choreography & full margam preparation by Guru Veena', 'Weekly preparation batch + private lessons in the final term', 'Live Carnatic orchestra coordination (vocal, mridangam, violin, nattuvangam)', 'Costume, jewellery & make-up guidance (hire or tailor)', 'Theatre booking, lighting & stage rehearsal management', 'Invitation, program & photography guidance for families', 'A clear, itemised budget before you commit — no surprises'],
+  steps: [
+    { n: '01', t: 'Invitation', d: 'Guru Veena invites a student whose technique, expression and maturity are ready — usually after 6–8 years of training.' },
+    { n: '02', t: 'Family meeting', d: 'We map the full picture together: repertoire, timeline, itemised costs and what the preparation months look like.' },
+    { n: '03', t: 'Preparation', d: 'Weekly preparation batch plus private lessons; the margam is polished item by item with live-music rehearsals.' },
+    { n: '04', t: 'The debut', d: 'A two-hour solo on a theatre stage with live orchestra — family, friends and community celebrating a graduation years in the making.' },
+  ],
+  debuts: [
+    { name: 'Shruti', year: '2026', note: 'Bharatanatyam — “She owned the stage from the first alarippu.”' },
+    { name: 'Devika', year: '2025', note: 'Bharatanatyam — now assisting Foundation batches.' },
+    { name: 'Anjali', year: '2025', note: 'Mohiniyattam — the school\u2019s first Mohiniyattam debut.' },
+    { name: 'Kavya', year: '2024', note: 'Bharatanatyam — performed her varnam at two Melbourne festivals since.' },
+  ],
+};
+
+export const childSafety = {
+  img: '/images/teacher-students.webp',
+  commitments: [
+    { title: 'Victorian Child Safe Standards', text: 'We align our policies and daily practice with Victoria\u2019s 11 Child Safe Standards — child safety is in our policies, our hiring, our studio layout and our culture, not just on this page.' },
+    { title: 'Working With Children Checks', text: 'Every teacher and regular volunteer holds a current Victorian Working With Children Check (WWCC), verified before their first class and re-checked annually. First Aid certification is held by all lead teachers.' },
+    { title: 'Supervision & pick-up', text: 'Children under 10 are released only to a parent or a nominated adult, from inside the studio. Students wait inside — never on the street — and two adults are present or within sight during children\u2019s classes.' },
+    { title: 'Photo & video consent', text: 'We photograph or film students only with written parent consent (collected at enrolment, changeable any time). We never publish a child\u2019s surname, and class photos focus on dance, not faces, wherever possible.' },
+    { title: 'Safe communication', text: 'All communication about children goes through parents — teachers do not privately message students. Class updates use the school email and parent group channels only.' },
+    { title: 'Speaking up', text: 'Any parent or student can raise a concern directly with Guru Veena, in person or at info@veenasschoolofindiandances.com.au. Concerns are taken seriously, documented, and — where required — reported to the Commission for Children and Young People or Victoria Police.' },
+  ],
+  code: ['Treat every child with respect, patience and cultural sensitivity', 'No physical correction without asking — adjustments are demonstrated or verbal first', 'Changing for performances happens in designated areas with adult supervision at the door, never inside', 'Bullying, exclusion and body-shaming are not tolerated — in class or in the parent chat'],
+};
+
+export const hireInfo = {
+  img: '/images/troupe-performance.webp',
+  packages: [
+    { title: 'Weddings & Receptions', price: 'From $650 (mock)', text: 'A 15–25 minute classical or fusion set that stops the room — Bharatanatyam, Mohiniyattam and Kuchipudi items, plus a welcome dance for the couple\u2019s entrance if you wish.' },
+    { title: 'Festivals & Community Events', price: 'From $450 (mock)', text: 'Stage-ready group choreography for cultural festivals, school fetes and council events across Melbourne — 10–30 minutes, MC notes and music supplied.' },
+    { title: 'Corporate & Cultural Programs', price: 'From $850 (mock)', text: 'Performances and interactive workshops for Diwali, Harmony Week and cultural-awareness programs — including a short “try the mudras” segment audiences love.' },
+  ],
+  includes: ['Professional troupe of senior students & teachers (4–10 dancers)', 'Traditional costumes, jewellery and props included', 'Music, MC script notes and a pre-event planning call', 'Public liability insured (mock detail — confirm before launch)', 'Melbourne metro travel included; regional Victoria by arrangement'],
+};
+
+export const firstClassGuide = {
+  img: '/images/first-class.webp',
+  bring: ['A water bottle (dancing is thirsty work)', 'A small notebook for steps, terms and practice notes', 'Hair tie — hair is worn tied back in every class', 'Your ghungroo if you have them (from Term 2 we fit them at the studio)'],
+  wear: ['Classical: practice saree, or salwar kameez with a dupatta that can be pinned', 'Hip Hop: comfortable clothes and clean indoor sneakers (no outdoor shoes on the floor)', 'No jewellery except small studs — bangles and steps do not mix', 'Bare feet for classical classes — no socks, they slip'],
+  happens: [
+    { t: 'Arrive 10 minutes early', d: 'Meet your teacher, see the studio, tie hair back and settle in. Parents of trial students are welcome to watch.' },
+    { t: 'Warm-up & first steps', d: 'A gentle warm-up, then your first adavus or grooves — every first class teaches real steps, not just watching.' },
+    { t: 'Rhythm & a short sequence', d: 'Clap the tala, learn a mudra or two, and put steps together into a tiny sequence you can show at home.' },
+    { t: 'Questions & next steps', d: 'Your teacher suggests the right batch and level, explains fees honestly, and there is never any pressure to enrol on the day.' },
+  ],
+};
+
+export const enrolSteps = [
+  { n: '01', t: 'Try a free class', d: 'Every enrolment starts with a free trial, so the student meets the teacher and the class before anyone commits.' },
+  { n: '02', t: 'Submit the enrolment form', d: 'Parent details, student age, course choice and consents — five minutes, below. We confirm your batch within one business day.' },
+  { n: '03', t: 'Pay Week 1 & begin', d: 'Term fees are due in Week 1 (payment plans on request). Bring a water bottle and a notebook — we handle the rest.' },
 ];

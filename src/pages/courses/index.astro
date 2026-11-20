@@ -10,7 +10,7 @@ const ld = courses.map((c) => ({ '@context': 'https://schema.org', '@type': 'Cou
   <PageHero script="Courses Offered" title="Find the form that fits" lead={`Short-term and long-term courses for ages 5 to adult. Every classical course follows the same path: ${levels.join(' → ')}.`} />
   <section class="px-4 py-12 sm:px-6">
     <div class="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {courses.map((c) => (<CourseCard slug={c.slug} title={c.title} img={c.img} short={c.short} ages={c.ages} feeHint={c.feeHint} />))}
+      {courses.map((c) => (<CourseCard slug={c.slug} title={c.title} img={c.img} short={c.short} ages={c.ages} feeHint={c.feeHint} level={2} />))}
     </div>
     <div class="mx-auto mt-12 max-w-3xl rounded-3xl bg-mist p-6 text-center reveal">
       <h2 class="font-display text-2xl font-bold">Not sure which form?</h2>

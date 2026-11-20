@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { ageGroups, timetable } from '../data/site';
+// attach matching timetable classes per age group by keyword
+const matchFor = (ages: string) => {
+  const all = timetable.flatMap((d) => d.classes.map((c) => ({ ...c, day: d.day })));
+  if (ages.includes('5–7')) return all.filter((c) => /5–8|5–10|6–9/.test(c.age));
+  if (ages.includes('8–12')) return all.filter((c) => /8–12|9–13|10–13|7–11/.test(c.age));
+  if (ages.includes('13–17')) return all.filter((c) => /13\+|14\+/.test(c.age));
+  return all.filter((c) => /Adult/.test(c.age));
+};
+---
+<Layout title="Classes by Age — Little Dancers 5–7, Juniors, Teens & Adults | Veena's School" description="Dance classes organised the way parents think: by age. Little Dancers (5–7), Juniors (8–12), Teens (13–17) and Adults (18+) — batches, times and the best place to start.">
+  <PageHero script="By Age" title="Classes by age" lead="Not sure which class fits? Start with your child's age — every group below lists its batches, times and the easiest first step." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl space-y-14">
+      {ageGroups.map((g, i) => (
+        <div class="reveal grid items-start gap-8 lg:grid-cols-[1fr_1.4fr]">
+          <figure class="overflow-hidden rounded-[2rem] shadow-lg"><img src={g.img} alt={`${g.title} (${g.ages}) learning dance at Veena's School`} width="900" height="650" loading="lazy" class="aspect-[10/7] w-full object-cover" /></figure>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-flame">{g.ages}</p>
+            <h2 class="mt-1 font-display text-3xl font-bold">{g.title}</h2>
+            <p class="mt-3 leading-relaxed text-ink/75">{g.text}</p>
+            <h3 class="mt-5 font-display text-lg font-bold">Classes in this age group</h3>
+            <ul class="mt-2 space-y-1.5 text-sm">
+              {g.classes.map((c) => (<li class="flex gap-2"><span aria-hidden="true" class="font-bold text-flame">✦</span><span>{c}</span></li>))}
+            </ul>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              {matchFor(g.ages).slice(0, 4).map((c) => (<article class="rounded-2xl bg-white p-4 ring-1 ring-line"><p class="text-xs font-bold text-flame">{c.day} · {c.time}</p><p class="mt-0.5 font-semibold">{c.name}</p><p class="text-xs text-ink/75">{c.level} · Teacher {c.teacher}</p></article>))}
+            </div>
+            <p class="mt-4 rounded-2xl bg-mist px-4 py-3 text-sm"><strong>Good to know:</strong> {g.note}</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/book-trial/" class="rounded-full bg-crimson px-6 py-3.5 font-bold text-cream hover:bg-crimson-deep">Book a free trial</a>
+              <a href="/timetable/" class="rounded-full border-2 border-crimson px-6 py-3.5 font-bold text-crimson hover:bg-mist">Full timetable</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

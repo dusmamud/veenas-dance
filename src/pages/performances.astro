@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { hireInfo, contact } from '../data/site';
+const inputCls = 'w-full rounded-2xl border border-line bg-white px-4 py-3.5 outline-none focus:border-crimson';
+---
+<Layout title="Hire the Troupe — Wedding, Festival & Corporate Performances in Melbourne | Veena's School" description="Book Veena's School performance troupe for weddings, festivals and corporate cultural programs across Melbourne: classical and fusion sets, full costume, music and MC notes included.">
+  <PageHero script="Performances" title="Hire the troupe" lead="A professional Indian classical dance troupe for the moments that matter — weddings, festivals and cultural programs across Melbourne." />
+  <section class="px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-6xl">
+      <figure class="reveal overflow-hidden rounded-[2rem] shadow-lg"><img src={hireInfo.img} alt="Veena's School troupe performing at a wedding celebration" width="1200" height="800" loading="lazy" class="aspect-[16/9] w-full object-cover" /></figure>
+      <div class="mt-10 grid gap-6 md:grid-cols-3" data-reveal-group>
+        {hireInfo.packages.map((p) => (<article class="flex flex-col rounded-3xl bg-white p-6 ring-1 ring-line"><h2 class="font-display text-xl font-bold text-crimson">{p.title}</h2><p class="mt-1 font-bold text-flame">{p.price}</p><p class="mt-3 flex-1 text-sm leading-relaxed text-ink/75">{p.text}</p><a href="#hire-enquiry" class="mt-4 inline-flex min-h-[44px] items-center font-bold text-crimson hover:underline">Enquire →</a></article>))}
+      </div>
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        <div class="reveal">
+          <h2 class="font-display text-2xl font-bold">Every booking includes</h2>
+          <ul class="mt-4 space-y-3">
+            {hireInfo.includes.map((item) => (<li class="flex gap-3 rounded-2xl bg-mist px-4 py-3 text-sm leading-relaxed"><span aria-hidden="true" class="font-bold text-flame">✓</span><span>{item}</span></li>))}
+          </ul>
+          <p class="mt-5 text-sm leading-relaxed text-ink/75">Repertoire spans Bharatanatyam, Mohiniyattam and Kuchipudi items (10–30 minutes), plus a fusion finale on request. Student performers are always accompanied by teachers, and our <a href="/child-safety/" class="font-bold text-crimson hover:underline">child safety commitment</a> applies at every external event.</p>
+        </div>
+        <div class="reveal">
+          <form id="hire-form" class="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-8" novalidate>
+            <h2 id="hire-enquiry" class="font-display text-2xl font-bold">Performance enquiry</h2>
+            <p class="mt-1 text-sm text-ink/75">Tell us about your event — we reply within one business day. Demo form; or call <a href={contact.phoneHref} class="font-bold text-crimson hover:underline">{contact.phoneDisplay}</a>.</p>
+            <div class="mt-5 grid gap-5">
+              <div><label for="hf-name" class="mb-1.5 block text-sm font-bold">Your name *</label><input id="hf-name" type="text" autocomplete="name" class={inputCls} /><p id="hf-name-error" class="field-error invisible text-red-700" role="alert"></p></div>
+              <div><label for="hf-email" class="mb-1.5 block text-sm font-bold">Email *</label><input id="hf-email" type="email" autocomplete="email" class={inputCls} /><p id="hf-email-error" class="field-error invisible text-red-700" role="alert"></p></div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div><label for="hf-type" class="mb-1.5 block text-sm font-bold">Event type *</label><select id="hf-type" class={inputCls}><option value="">Choose…</option><option>Wedding / reception</option><option>Festival / community event</option><option>Corporate / cultural program</option><option>Other celebration</option></select><p id="hf-type-error" class="field-error invisible text-red-700" role="alert"></p></div>
+                <div><label for="hf-date" class="mb-1.5 block text-sm font-bold">Event date</label><input id="hf-date" type="text" placeholder="e.g. Sat 14 Nov 2027" class={inputCls} /></div>
+              </div>
+              <div><label for="hf-message" class="mb-1.5 block text-sm font-bold">About your event *</label><textarea id="hf-message" rows="4" class={inputCls} placeholder="Venue, audience size, how long you'd like us to perform…"></textarea><p id="hf-message-error" class="field-error invisible text-red-700" role="alert"></p></div>
+            </div>
+            <button type="submit" class="mt-6 w-full rounded-full bg-crimson px-7 py-4 font-bold text-cream transition hover:bg-crimson-deep sm:w-auto">Send enquiry</button>
+          </form>
+          <div id="hire-success" class="hidden rounded-3xl bg-ink p-8 text-cream" role="status">
+            <p class="font-script text-4xl text-gold">Enquiry received</p>
+            <h2 class="mt-2 font-display text-2xl font-bold">Thank you (mock)</h2>
+            <p class="mt-3 leading-relaxed text-cream/85">We will reply within one business day with availability, a repertoire suggestion and an itemised quote.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
