@@ -1,5 +1,8 @@
 # Veena's School of Indian Dances — Website
 
+**Live site:** https://veenas-dance.pages.dev
+**Repository:** https://github.com/dusmamud/veenas-dance
+
 Astro 7 + Tailwind CSS 4 website for Veena's School of Indian Dances (Melbourne, Australia), built from the client's original homepage screenshot and elevated to a modern, accessible, world-class standard. All content is **mock/demo data in one file** — `src/data/site.ts` — ready to swap when the client approves real details.
 
 ## Stack (same as the Creatix reference project)
